@@ -10,7 +10,7 @@ export default function Home() {
       <Button variant="elevated">I am a button</Button>
       <Input placeholder="I am an input" />
       <Progress value={60} />
-      <Textarea>I am an textarea</Textarea>
+      <Textarea placeholder="I am an textarea" />
       <Checkbox />
     </div>
   );
