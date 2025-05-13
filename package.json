@@ -2,6 +2,7 @@
   "name": "multitenant",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -9,6 +10,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@payloadcms/db-mongodb": "^3.37.0",
+    "@payloadcms/next": "^3.37.0",
+    "@payloadcms/payload-cloud": "^3.37.0",
+    "@payloadcms/richtext-lexical": "^3.37.0",
     "@radix-ui/react-checkbox": "^1.3.1",
     "@radix-ui/react-dialog": "^1.1.13",
     "@radix-ui/react-progress": "^1.1.6",
@@ -16,8 +21,10 @@
     "@radix-ui/react-slot": "^1.2.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "graphql": "^16.8.1",
     "lucide-react": "^0.509.0",
     "next": "15.3.2",
+    "payload": "^3.37.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwind-merge": "^3.3.0"
