@@ -20,6 +20,7 @@ export default async function HomeLayout({ children }: Props) {
         exists: false,
       },
     },
+    sort: 'name',
   });
 
   const formattedData = data.docs.map((doc) => ({
