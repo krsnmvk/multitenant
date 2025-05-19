@@ -36,7 +36,7 @@ export default function NavbarSidebar({ items, onOpenChange, open }: Props) {
               {children}
             </Link>
           ))}
-          {/* <div className="border-t">
+          <div className="border-t">
             <Link
               href="/sign-in"
               className="w-full flex items-center text-base font-medium text-left hover:bg-black hover:text-white p-4"
@@ -49,7 +49,7 @@ export default function NavbarSidebar({ items, onOpenChange, open }: Props) {
             >
               Start Selling
             </Link>
-          </div> */}
+          </div>
         </ScrollArea>
       </SheetContent>
     </Sheet>
