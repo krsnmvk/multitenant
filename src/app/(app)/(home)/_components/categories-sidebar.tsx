@@ -8,31 +8,35 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet';
-import { CustomCategory } from '@/utils/custom-category';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Button } from '@/components/ui/button';
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
+import { useTRPC } from '@/trpc/client';
+import { useQuery } from '@tanstack/react-query';
+import { CategoriesGetManyOutput } from '@/modules/types/categories-type';
 
 type Props = {
   open: boolean;
-  onOpenChange: React.Dispatch<React.SetStateAction<boolean>>;
-  data: CustomCategory[];
+  onOpenChangeAction: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function CategoriesSidebar({ onOpenChange, open, data }: Props) {
-  const [parentCategories, setParentCategories] = useState<
-    CustomCategory[] | null
+export default function CategoriesSidebar({ onOpenChangeAction, open }: Props) {
+  const trpc = useTRPC();
+  const { data } = useQuery(trpc.categories.getMany.queryOptions());
+
+  const [parentCategories, setParentCategories] =
+    useState<CategoriesGetManyOutput | null>();
+  const [selectedCategories, setSelectedCategories] = useState<
+    CategoriesGetManyOutput[1] | null
   >();
-  const [selectedCategories, setSelectedCategories] =
-    useState<CustomCategory | null>();
 
   const currentCategories = parentCategories ?? data ?? [];
 
   const router = useRouter();
 
-  function handleCategoryClick(category: CustomCategory) {
+  function handleCategoryClick(category: CategoriesGetManyOutput[1]) {
     if (category.subcategories && category.subcategories.length > 0) {
-      setParentCategories(category.subcategories as CustomCategory[]);
+      setParentCategories(category.subcategories as CategoriesGetManyOutput);
       setSelectedCategories(category);
     } else {
       if (parentCategories && selectedCategories) {
@@ -52,7 +56,7 @@ export default function CategoriesSidebar({ onOpenChange, open, data }: Props) {
   function handleOpenChange(open: boolean) {
     setSelectedCategories(null);
     setParentCategories(null);
-    onOpenChange(open);
+    onOpenChangeAction(open);
   }
 
   function hancleBackClick() {
