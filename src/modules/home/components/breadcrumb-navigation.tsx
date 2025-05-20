@@ -44,7 +44,7 @@ export default function BreadcrumbNavigation({
         ) : (
           <BreadcrumbItem>
             <BreadcrumbPage className="text-xl font-medium">
-              {activeSubcategoryName}
+              {activeCategoryName}
             </BreadcrumbPage>
           </BreadcrumbItem>
         )}
