@@ -7,9 +7,8 @@ import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import { Suspense } from 'react';
 import SearchFiltersLoading from '@/modules/home/components/search-filters-loading';
 
-export default async function HomeLayout({ children }: Props) {
-  const queryClient = await getQueryClient();
-
+export default function HomeLayout({ children }: Props) {
+  const queryClient = getQueryClient();
   void queryClient.fetchQuery(trpc.categories.getMany.queryOptions());
 
   return (

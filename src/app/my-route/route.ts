@@ -7,7 +7,7 @@ export const GET = async () => {
   });
 
   const data = await payload.find({
-    collection: 'categories',
+    collection: 'products',
   });
 
   return Response.json(data);
