@@ -4,6 +4,8 @@ import './globals.css';
 
 import TRPCReactProvider from '@/trpc/client';
 import { Toaster } from 'sonner';
+import Navbar from '@/modules/home/components/navbar';
+import Footer from '@/modules/home/components/footer';
 
 const dmSans = DM_Sans({
   subsets: ['latin'],

@@ -1,11 +1,11 @@
 import { Props } from '@/utils/props';
-import Navbar from './_components/navbar';
-import Footer from './_components/footer';
-import SearchFilters from './_components/search-filters';
+import Navbar from '@/modules/home/components/navbar';
+import Footer from '@/modules/home/components/footer';
+import SearchFilters from '@/modules/home/components/search-filters';
 import { getQueryClient, trpc } from '@/trpc/server';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import { Suspense } from 'react';
-import SearchFiltersLoading from './_components/search-filters-loading';
+import SearchFiltersLoading from '@/modules/home/components/search-filters-loading';
 
 export default async function HomeLayout({ children }: Props) {
   const queryClient = await getQueryClient();
