@@ -4,8 +4,8 @@ import './globals.css';
 
 import TRPCReactProvider from '@/trpc/client';
 import { Toaster } from 'sonner';
-import Navbar from '@/modules/home/components/navbar';
-import Footer from '@/modules/home/components/footer';
+
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -24,10 +24,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${dmSans.className} antialiased`}>
-        <TRPCReactProvider>
-          <Toaster />
-          {children}
-        </TRPCReactProvider>
+        <NuqsAdapter>
+          <TRPCReactProvider>
+            <Toaster />
+            {children}
+          </TRPCReactProvider>
+        </NuqsAdapter>
       </body>
     </html>
   );
