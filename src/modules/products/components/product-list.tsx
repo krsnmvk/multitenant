@@ -9,5 +9,14 @@ export default function ProductList({ category }: { category?: string }) {
     trpc.products.getMany.queryOptions({ category })
   );
 
-  return <div>{JSON.stringify(data)}</div>;
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
+      {data.docs.map(({ id, name, price }) => (
+        <div key={id} className="border rounded-md bg-white p-4">
+          <h2>{name}</h2>
+          <h4>{price}</h4>
+        </div>
+      ))}
+    </div>
+  );
 }
