@@ -4,10 +4,10 @@ import Link from 'next/link';
 type Props = {
   category: CategoriesGetManyOutput[1];
   isOpen: boolean;
-  position: { top: number; left: number };
+  // position: { top: number; left: number };
 };
 
-export default function SubcategoryMenu({ category, isOpen, position }: Props) {
+export default function SubcategoryMenu({ category, isOpen }: Props) {
   if (
     !isOpen ||
     !category.subcategories ||
@@ -19,10 +19,7 @@ export default function SubcategoryMenu({ category, isOpen, position }: Props) {
   const bgColor = category.color || '#f5f5f5';
 
   return (
-    <div
-      className="z-50 fixed"
-      style={{ top: position.top, left: position.left }}
-    >
+    <div className="z-50 absolute" style={{ top: '100%', left: 0 }}>
       <div className="w-60 h-3" />
       <div
         style={{ backgroundColor: bgColor }}

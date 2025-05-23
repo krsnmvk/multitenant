@@ -3,6 +3,7 @@ import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import { SearchParams } from 'nuqs/server';
 import { loadProductFilters } from '@/modules/products/nuqs/search-params';
 import ProductListUi from '@/modules/products/ui/product-list-ui';
+import { DEFAULT_VALUE } from '@/modules/products/constant';
 
 type Props = {
   params: Promise<{
@@ -16,8 +17,12 @@ export default async function Page({ params, searchParams }: Props) {
   const filters = await loadProductFilters(searchParams);
 
   const queryClient = getQueryClient();
-  void queryClient.fetchQuery(
-    trpc.products.getMany.queryOptions({ category, ...filters })
+  void queryClient.prefetchInfiniteQuery(
+    trpc.products.getMany.infiniteQueryOptions({
+      ...filters,
+      category,
+      limit: DEFAULT_VALUE,
+    })
   );
 
   return (
