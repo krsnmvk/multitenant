@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { StarIcon } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 type Props = {
   id: string;
@@ -23,6 +24,15 @@ export default function ProductCard({
   authorImageUrl,
   imageUrl,
 }: Props) {
+  const router = useRouter();
+
+  function handleUserClick(e: React.MouseEvent<HTMLDivElement>) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    router.push(`/tenants/${authorUsername}`);
+  }
+
   return (
     <Link href={`/products/${id}`}>
       <div className="flex flex-col hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-shadow h-full border overflow-hidden bg-white rounded-md">
@@ -36,7 +46,7 @@ export default function ProductCard({
         </div>
         <div className="flex border-y flex-col gap-3 p-4 flex-1">
           <h2 className="text-lg line-clamp-4 font-medium">{name}</h2>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2" onClick={handleUserClick}>
             {authorImageUrl && (
               <Image
                 src={authorImageUrl}
