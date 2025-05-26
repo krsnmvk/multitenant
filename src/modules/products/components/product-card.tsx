@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { StarIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { formatCurrency } from '@/utils/format-currency';
 
 type Props = {
   id: string;
@@ -34,7 +35,7 @@ export default function ProductCard({
   }
 
   return (
-    <Link href={`/products/${id}`}>
+    <Link href={`/tenants/${authorUsername}/products/${id}`}>
       <div className="flex flex-col hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-shadow h-full border overflow-hidden bg-white rounded-md">
         <div className="relative aspect-square">
           <Image
@@ -69,13 +70,7 @@ export default function ProductCard({
         </div>
         <div className="p-4">
           <div className="relative px-2 py-1 border bg-pink-400 w-fit">
-            <p>
-              {Intl.NumberFormat('en-US', {
-                style: 'currency',
-                currency: 'USD',
-                maximumFractionDigits: 0,
-              }).format(Number(price))}
-            </p>
+            <p className="text-sm font-medium">{formatCurrency(price)}</p>
           </div>
         </div>
       </div>
