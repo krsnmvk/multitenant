@@ -7,6 +7,7 @@ import path from 'path';
 import { buildConfig } from 'payload';
 import { fileURLToPath } from 'url';
 import sharp from 'sharp';
+import { Config } from './payload-types';
 
 import { Users } from './collections/Users';
 import { Media } from './collections/Media';
@@ -38,7 +39,7 @@ export default buildConfig({
   sharp,
   plugins: [
     payloadCloudPlugin(),
-    multiTenantPlugin({
+    multiTenantPlugin<Config>({
       collections: {
         products: {},
       },
