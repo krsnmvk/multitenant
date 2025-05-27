@@ -17,14 +17,14 @@ export default async function TenantsHomeLayout({ children, params }: Props) {
   void queryClient.prefetchQuery(trpc.tenants.getOne.queryOptions({ slug }));
 
   return (
-    <div className="min-h-screen flx flex-col bg-[#f4f4f0]">
+    <div className="min-h-screen flex flex-col bg-[#f4f4f0]">
       <HydrationBoundary state={dehydrate(queryClient)}>
         <Suspense fallback={<NavbarLoading />}>
           <Navbar slug={slug} />
         </Suspense>
       </HydrationBoundary>
       <div className="flex-1">
-        <div className="max-w-(--breapoint-xl) mx-auto">{children}</div>
+        <div className="max-w-(--breakpoint-xl) mx-auto">{children}</div>
       </div>
       <Footer />
     </div>
