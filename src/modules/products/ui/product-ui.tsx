@@ -7,9 +7,19 @@ import { useTRPC } from '@/trpc/client';
 import { formatCurrency } from '@/utils/format-currency';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { Link2Icon, StarIcon } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Fragment } from 'react';
+
+const CartButton = dynamic(() => import('../components/cart-button'), {
+  ssr: false,
+  loading: () => (
+    <Button variant="elevated" className="bg-pink-400 flex-1" disabled>
+      Add to Cart
+    </Button>
+  ),
+});
 
 type Props = {
   productId: string;
@@ -91,9 +101,7 @@ export default function ProductUi({ productId, tenantSlug }: Props) {
             <div className="h-full border-t lg:border-t-0 lg:border-l">
               <div className="flex flex-col gap-4 p-6 border-b">
                 <div className="flex items-center gap-2">
-                  <Button variant="elevated" className="bg-pink-400 flex-1">
-                    Add to Cart
-                  </Button>
+                  <CartButton productId={productId} tenantSlug={tenantSlug} />
                   <Button variant="elevated" className="size-12">
                     <Link2Icon />
                   </Button>

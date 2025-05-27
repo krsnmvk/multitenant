@@ -1,9 +1,24 @@
 'use client';
 
+import { Button } from '@/components/ui/button';
 import { useTRPC } from '@/trpc/client';
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { ShoppingCartIcon } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
+
+const CheckoutButton = dynamic(
+  () => import('@/modules/checkout/components/checkout-button'),
+  {
+    ssr: false,
+    loading: () => (
+      <Button variant="elevated" disabled className="bg-white">
+        <ShoppingCartIcon className="text-black" />
+      </Button>
+    ),
+  }
+);
 
 export default function Navbar({ slug }: { slug: string }) {
   const trpc = useTRPC();
@@ -24,6 +39,7 @@ export default function Navbar({ slug }: { slug: string }) {
           )}
           <h4 className="text-xl">{data.name}</h4>
         </Link>
+        <CheckoutButton tenantSlug={slug} />
       </div>
     </nav>
   );
